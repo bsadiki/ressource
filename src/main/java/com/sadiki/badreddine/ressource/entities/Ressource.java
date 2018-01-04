@@ -1,8 +1,6 @@
 package com.sadiki.badreddine.ressource.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,16 +12,18 @@ public class Ressource implements Serializable{
     private Date dateAchat;
     private double prix;
     private int note;
-    private Long societeId;
+    @ManyToOne
+    @JoinColumn(name="num_Entreprise")
+    private Entreprise entreprise;
     public Ressource() {
     }
 
-    public Ressource(String nom, Date dateAchat, double prix, int note, Long societeId) {
+    public Ressource(String nom, Date dateAchat, double prix, int note, Entreprise entreprise) {
         this.nom = nom;
         this.dateAchat = dateAchat;
         this.prix = prix;
         this.note = note;
-        this.societeId = societeId;
+        this.entreprise = entreprise;
     }
 
     public Long getNumero() {
@@ -67,11 +67,11 @@ public class Ressource implements Serializable{
         this.note = note;
     }
 
-    public Long getSocieteId() {
-        return societeId;
+    public Entreprise getEntreprise() {
+        return entreprise;
     }
 
-    public void setSocieteId(Long societeId) {
-        this.societeId = societeId;
+    public void setEntreprise(Entreprise entreprise) {
+        this.entreprise = entreprise;
     }
 }

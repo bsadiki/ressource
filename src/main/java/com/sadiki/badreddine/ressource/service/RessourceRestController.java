@@ -34,11 +34,11 @@ public class RessourceRestController {
                                                 @RequestParam(defaultValue = "5") int size){
         return ressourceRepository.findByNomContains(nom, new PageRequest(page,size));
     }
-    @ApiOperation(value = "Chercher les ressoucces par socite")
+    @ApiOperation(value = "Chercher les ressoucces par societe")
     @GetMapping(value = "/ressourcesBySociete")
     private Page<Ressource> getRessourcesBySociete(@RequestParam(defaultValue = "") Long societeID,
                                                 @RequestParam(defaultValue = "0") int page,
                                                 @RequestParam(defaultValue = "5") int size){
-        return ressourceRepository.findBySocieteId(societeID, new PageRequest(page,size));
+        return ressourceRepository.findByEntreprise_EntrepriseId(societeID, new PageRequest(page,size));
     }
 }
