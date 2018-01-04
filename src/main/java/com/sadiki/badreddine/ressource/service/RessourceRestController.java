@@ -19,26 +19,26 @@ public class RessourceRestController {
     RessourceRepository ressourceRepository;
     @GetMapping(value = "/ressources")
     @ApiOperation(value = "Chercher toutes les ressource")
-    private List<Ressource> getRessources(){
+    public List<Ressource> getRessources(){
         return ressourceRepository.findAll();
     }
     @PostMapping(value = "/ressource")
     @ApiOperation(value = "Ajouter une ressource")
-    private Ressource addRessource(@RequestBody Ressource ressource){
+    public Ressource addRessource(@RequestBody Ressource ressource){
         return ressourceRepository.save(ressource);
     }
     @GetMapping(value = "/ressourcesbyNom")
     @ApiOperation(value = "Chercher les ressource par nom")
-    private Page<Ressource> getRessourcesByName(@RequestParam(defaultValue = "") String nom,
+    public Page<Ressource> getRessourcesByName(@RequestParam(defaultValue = "") String nom,
                                                 @RequestParam(defaultValue = "0") int page,
                                                 @RequestParam(defaultValue = "5") int size){
         return ressourceRepository.findByNomContains(nom, new PageRequest(page,size));
     }
     @ApiOperation(value = "Chercher les ressoucces par societe")
     @GetMapping(value = "/ressourcesBySociete")
-    private Page<Ressource> getRessourcesBySociete(@RequestParam(defaultValue = "") Long societeID,
+    public Page<Ressource> getRessourcesBySociete(@RequestParam(defaultValue = "") Long entrepriseId,
                                                 @RequestParam(defaultValue = "0") int page,
                                                 @RequestParam(defaultValue = "5") int size){
-        return ressourceRepository.findByEntreprise_EntrepriseId(societeID, new PageRequest(page,size));
+        return ressourceRepository.findByEntreprise_EntrepriseId(entrepriseId, new PageRequest(page,size));
     }
 }

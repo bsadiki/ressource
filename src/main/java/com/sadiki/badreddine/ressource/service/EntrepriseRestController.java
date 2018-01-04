@@ -18,19 +18,19 @@ public class EntrepriseRestController {
     EntrepriseRepository entrepriseRepository;
     @GetMapping(value = "/entreprise")
     @ApiOperation(value = "Chercher toutes les entreprise")
-    private List<Entreprise> getEnreprises(){
+    public List<Entreprise> getEnreprises(){
         return entrepriseRepository.findAll();
     }
     @GetMapping(value = "/entrepriseByName")
     @ApiOperation(value = "Chercher les entreprise par nom")
-    private Page<Entreprise> getEnreprisesByName(@RequestParam(defaultValue = "") String nom,
+    public Page<Entreprise> getEnreprisesByName(@RequestParam(defaultValue = "") String nom,
                                                  @RequestParam(defaultValue = "0") int page,
                                                  @RequestParam(defaultValue = "5") int size){
         return entrepriseRepository.findByEntrepriseNomContains(nom,new PageRequest(page,size));
     }
     @PostMapping(value = "/entreprise")
     @ApiOperation(value = "Ajouter une entreprise")
-    private Entreprise addRessource(@RequestBody Entreprise entreprise){
+    public Entreprise addEntreprise(@RequestBody Entreprise entreprise){
         return entrepriseRepository.save(entreprise);
     }
 }

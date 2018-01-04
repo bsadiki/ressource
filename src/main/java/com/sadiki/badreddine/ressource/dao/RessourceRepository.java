@@ -6,7 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import java.util.List;
+
 public interface RessourceRepository extends JpaRepository<Ressource, Long>{
-    public Page<Ressource> findByEntreprise_EntrepriseId(Long societeId, Pageable pageable);
-    public Page<Ressource> findByNomContains(String nom, Pageable pageable);
+    Page<Ressource> findByEntreprise_EntrepriseId(Long societeId, Pageable pageable);
+    Page<Ressource> findByNomContains(String nom, Pageable pageable);
+    List<Ressource> findByEntreprise_EntrepriseId(Long societeId);
+    List<Ressource> findByNomContains(String nom);
 }
